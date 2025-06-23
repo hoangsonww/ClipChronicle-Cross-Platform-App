@@ -21,17 +21,22 @@
   <img src="https://img.shields.io/badge/Chrome%20Ext-MV3-FFAD00?style=for-the-badge&logo=googlechrome&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/npm-CC3534?style=for-the-badge&logo=npm&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Dependabot-2CBE4E?style=for-the-badge&logo=dependabot&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/Shell-darkgreen?style=for-the-badge&logo=gnubash&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/Makefile-123456?style=for-the-badge&logo=make&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/License-MIT-000000?style=for-the-badge" />
 </p>
 
-> **ClipChronicle—your clipboard’s second brain**
-> AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser—completely offline.
+> [!IMPORTANT]
+> **ClipChronicle - your clipboard’s second brain**
+> AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline.
 
 ## Table of Contents
 
@@ -65,7 +70,7 @@
 | Action              | Details                                                                             |
 | ------------------- | ----------------------------------------------------------------------------------- |
 | **One-click tasks** | Summarize, translate, refactor, sentiment analysis, unit conversions                |
-| **Smart tags**      | Topic, language, file type, sentiment—stored in SQLite FTS5                         |
+| **Smart tags**      | Topic, language, file type, sentiment - stored in SQLite FTS5                       |
 | **Magic Paste**     | Strips formatting, trackers, line numbers, or Markdown artifacts with regex presets |
 
 ### 🗂️ Unlimited History
@@ -165,7 +170,7 @@ Then load `extension/dist` as an unpacked extension at `chrome://extensions`.
 
 1. Copy messy text.
 2. In the HUD choose **Magic Paste → Strip formatting** (or your custom preset).
-3. Paste—fonts, colors, and trackers are gone.
+3. Paste - fonts, colors, and trackers are gone.
 
 ### Analytics
 
@@ -177,8 +182,6 @@ Open **Preferences → Insights** to view:
 
 Everything renders directly from the local SQLite database.
 
----
-
 ## Environment Configuration
 
 | Variable           | Example                                | Effect                      |
@@ -189,8 +192,6 @@ Everything renders directly from the local SQLite database.
 | `CC_SQLCIPHER_KEY` | `My$up3rS3cr3t`                        | Encrypt database            |
 
 Place variables in `.env.local` inside the relevant package.
-
----
 
 ## Testing & Quality
 
@@ -205,8 +206,6 @@ Run everything:
 pnpm test:all
 ```
 
----
-
 ## Continuous Delivery
 
 1. `pnpm changeset` bumps version and generates changelog.
@@ -218,16 +217,12 @@ pnpm test:all
 
 3. SBOM (`cyclonedx`) and SHA-256 checksums attached to the GitHub release.
 
----
-
 ## Security
 
 - No telemetry; the app runs fully offline.
 - Electron renderer is sandboxed; Node APIs are blocked.
 - Monthly Dependabot security scans.
 - Vulnerabilities: **[security@clipchronicle.example.com](mailto:security@clipchronicle.example.com)** (response within 48 h).
-
----
 
 ## Roadmap
 
@@ -240,28 +235,24 @@ pnpm test:all
 
 Vote for features or pitch new ideas in the discussions tab.
 
----
-
 ## Contributing
 
 1. Fork and create a feature branch.
 2. `pnpm i && pnpm test`.
 3. Commit using **Conventional Commits** (e.g., `feat:`, `fix:`).
-4. Open a pull request—CI must pass.
+4. Open a pull request - CI must pass.
 5. All contributions are accepted under the MIT license and CLA.
-
----
 
 ## License
 
-ClipChronicle is released under the **MIT License**.
-
----
+ClipChronicle is released under the **MIT License**. See [LICENSE](LICENSE) for details.
 
 ## Contact
 
 - Bug reports: GitHub **Issues**
 - Questions: GitHub **Discussions**
 - Security: **[security@clipchronicle.example.com](mailto:security@clipchronicle.example.com)**
+
+---
 
 Enjoy clipping ✂️🧠
