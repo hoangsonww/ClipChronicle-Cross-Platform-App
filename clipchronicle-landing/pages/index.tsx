@@ -314,12 +314,12 @@ export default function Home() {
           content="AI-powered, local-only clipboard manager that keeps every snippet within reach."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://clipchronicle.example.com" />
+        <meta property="og:url" content="https://clipchronicle.vercel.app/" />
         <meta
           property="og:image"
-          content="https://clipchronicle.example.com/og-image.png"
+          content="https://clipchronicle.vercel.app/android-chrome-512x512.png"
         />
-        <link rel="canonical" href="https://clipchronicle.example.com" />
+        <link rel="canonical" href="https://clipchronicle.vercel.app/" />
       </Head>
 
       {/* ----------------------------- Global CSS ---------------------------- */}
@@ -339,10 +339,10 @@ export default function Home() {
         }
         .typewriter-cursor {
           display: inline-block;
-          width: 3px; /* very thin */
-          height: 1em; /* match your text height */
+          width: 3px;
+          height: 1em;
           background-color: currentColor;
-          margin-left: 1px; /* a little breathing room */
+          margin-left: 1px;
           animation: blink 1s step-end infinite;
         }
         @keyframes subtleRotate {
@@ -353,12 +353,11 @@ export default function Home() {
         .animate-subtleRotate {
           animation: subtleRotate 40s linear infinite;
         }
-        /* Uniform card sizing */
         .card-uniform {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          height: 14rem; /* 224 px */
+          height: 14rem;
         }
         body {
           font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -367,9 +366,7 @@ export default function Home() {
 
       {/* ------------------------------- Hero -------------------------------- */}
       <header className="relative flex flex-col items-center justify-center min-h-dvh bg-neutral-950 text-white overflow-hidden">
-        {/* Rotating radial gradient */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,98,0,0.15),transparent_60%)] animate-subtleRotate" />
-        {/* Static grid overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(transparent_94%,rgba(255,255,255,0.04)_94%),linear-gradient(90deg,transparent_94%,rgba(255,255,255,0.04)_94%)] bg-[size:64px_64px]" />
 
         <motion.h1
@@ -413,11 +410,17 @@ export default function Home() {
           transition={{ delay: 0.55 }}
           className="mt-12 flex gap-4"
         >
-          <Btn>
+          <Btn
+            href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/tag/v1.0.0"
+            outline
+          >
             <Download className="size-5" />
             Download
           </Btn>
-          <Btn href="https://github.com/example/clipchronicle" outline>
+          <Btn
+            href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App"
+            outline
+          >
             <Github className="size-5" />
             GitHub
           </Btn>
@@ -687,7 +690,7 @@ export default function Home() {
             requests, feature ideas, and issue reports - star the repo to
             support open development!
           </p>
-          <Btn href="https://github.com/example/clipchronicle">
+          <Btn href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App">
             <Github className="size-5" />
             Star on GitHub
           </Btn>
@@ -717,6 +720,7 @@ export default function Home() {
           <Btn
             outline
             className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
+            href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
           >
             <Download className="size-5" />
             Windows
@@ -724,6 +728,7 @@ export default function Home() {
           <Btn
             outline
             className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
+            href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
           >
             <Download className="size-5" />
             macOS
@@ -731,6 +736,7 @@ export default function Home() {
           <Btn
             outline
             className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
+            href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
           >
             <Download className="size-5" />
             Linux
@@ -753,7 +759,7 @@ export default function Home() {
               About the Creator
             </Link>
             <Link
-              href="https://github.com/example/clipchronicle"
+              href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App"
               className="flex items-center gap-1 hover:text-white transition"
               target="_blank"
               rel="noopener noreferrer"
