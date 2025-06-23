@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  extension:
+    build:
+      context: .
+    ports:
+      - "81:80"
+    restart: always

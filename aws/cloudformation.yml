@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'ClipChronicle Landing Site S3 + CloudFront'
+
+Resources:
+  LandingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${AWS::StackName}-landing'
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+      VersioningConfiguration:
+        Status: Enabled
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref LandingBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Sub 'arn:aws:s3:::${LandingBucket}/*'
+
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub 'OAI for ${AWS::StackName}'
+
+  LandingDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        Origins:
+          - Id: S3LandingOrigin
+            DomainName: !GetAtt LandingBucket.RegionalDomainName
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}'
+        DefaultCacheBehavior:
+          TargetOriginId: S3LandingOrigin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD, OPTIONS]
+          CachedMethods: [GET, HEAD]
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: true
+        HttpVersion: http2
+
+Outputs:
+  BucketName:
+    Description: 'S3 bucket hosting the landing site'
+    Value: !Ref LandingBucket
+
+  DistributionId:
+    Description: 'CloudFront distribution ID'
+    Value: !Ref LandingDistribution
+
+  DistributionDomain:
+    Description: 'CloudFront distribution domain name'
+    Value: !GetAtt LandingDistribution.DomainName

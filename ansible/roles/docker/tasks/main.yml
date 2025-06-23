@@ -1,0 +1,32 @@
+---
+- name: Install prerequisites
+  apt:
+    name: "{{ docker_packages }}"
+    state: present
+    update_cache: true
+
+- name: Add Docker GPG key
+  apt_key:
+    url: "{{ docker_gpg_url }}"
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "{{ docker_repo }}"
+    state: present
+
+- name: Install Docker Engine & Compose plugin
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+    state: present
+    update_cache: true
+
+- name: Ensure docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: true

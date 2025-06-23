@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  landing:
+    build:
+      context: ./clipchronicle-landing
+    ports:
+      - "80:80"
+
+  extension:
+    build:
+      context: ./extension
+    ports:
+      - "81:80"
+
+  electron-builder:
+    build:
+      context: ./electron-app
+    volumes:
+      - ./electron-app/out:/out
+    command: ["true"]

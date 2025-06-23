@@ -1,0 +1,141 @@
+:root {
+  --border: #d0d7de;
+  --hover: #f6f8fa;
+  --muted: #6e7781;
+  --brand: #8c4eff;
+  font-family: system-ui, sans-serif;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #fff;
+  color: #24292f;
+}
+header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+button {
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+button.icon {
+  background: transparent;
+  padding: 4px;
+  border-radius: 6px;
+}
+button.icon:hover {
+  background: var(--hover);
+}
+button.primary {
+  background: var(--brand);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+button.primary:hover {
+  opacity: 0.9;
+}
+input.search {
+  width: calc(100% - 24px);
+  margin: 10px 12px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.list {
+  height: calc(100% - 148px);
+  overflow-y: auto;
+  padding-bottom: 8px;
+}
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  transition: 0.15s;
+}
+.item:hover {
+  background: var(--hover);
+}
+.text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.time {
+  font-size: 11px;
+  color: var(--muted);
+}
+.empty {
+  padding: 30px;
+  text-align: center;
+  color: var(--muted);
+}
+#help {
+  padding: 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #24292f;
+}
+#help h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+#help ul {
+  padding-left: 18px;
+  list-style: disc;
+}
+.cc-highlight {
+  background: #fff3a8;
+  padding: 2px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px #ffd33d;
+}
+
+button.icon {
+  background: transparent;
+  padding: 5px;
+  border-radius: 8px;
+  display: flex;
+  transition:
+    background 0.15s,
+    box-shadow 0.15s;
+}
+button.icon:hover {
+  background: var(--hover);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #323232;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  opacity: 0.9;
+  z-index: 2147483647;
+  animation: fadeout 2.5s forwards;
+}
+@keyframes fadeout {
+  0% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}

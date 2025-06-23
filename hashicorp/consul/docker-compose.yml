@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  consul:
+    image: consul:1.16
+    command: agent -config-file=/consul/config/consul.hcl
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+    volumes:
+      - ./consul.hcl:/consul/config/consul.hcl
+      - consul-data:/consul/data
+
+volumes:
+  consul-data:

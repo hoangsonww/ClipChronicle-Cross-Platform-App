@@ -1,0 +1,7 @@
+- name: Deploy ClipChronicle Landing & Extension
+  hosts: app
+  become: true
+  roles:
+    - docker
+    - landing
+    - extension

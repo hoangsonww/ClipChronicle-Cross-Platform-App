@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Clipboard Companion",
+  "version": "1.0.0",
+  "description": "Shows text you copy inside any normal web page.",
+  "icons": {
+    "16": "public/favicon-16x16.png",
+    "32": "public/favicon-32x32.png",
+    "192": "public/android-chrome-192x192.png",
+    "512": "public/android-chrome-512x512.png"
+  },
+
+  "permissions": ["storage", "clipboardRead", "notifications"],
+
+  "options_page": "options.html",
+
+  "background": { "service_worker": "background.js", "type": "module" },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "public/favicon-32x32.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle",
+      "js": ["content.js"]
+    }
+  ]
+}

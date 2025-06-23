@@ -1,0 +1,39 @@
+{
+  "name": "clipchronicle-cross-platform",
+  "version": "1.0.0",
+  "description": "A cross-platform AI-powered clipboard manager for Linux, macOS, and Windows.",
+  "author": {
+    "name": "Son Nguyen"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/issues"
+  },
+  "keywords": [
+    "clipboard",
+    "manager",
+    "cross-platform",
+    "ai",
+    "linux",
+    "macos",
+    "windows",
+    "typescript",
+    "electron",
+    "app"
+  ],
+  "scripts": {
+    "lint": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md,html}\"",
+    "format": "npm run lint"
+  },
+  "dependencies": {
+    "prettier": "^3.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}

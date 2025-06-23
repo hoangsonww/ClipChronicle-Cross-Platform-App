@@ -1,0 +1,20 @@
+---
+- name: Copy landing directory to server
+  synchronize:
+    src: ../clipchronicle-landing/
+    dest: /opt/clipchronicle-landing
+    rsync_opts:
+      - "--delete"
+    recurse: yes
+
+- name: Render landing docker-compose.yml
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/clipchronicle-landing/docker-compose.yml
+
+- name: Launch landing container
+  community.docker.docker_compose:
+    project_src: /opt/clipchronicle-landing
+    restarted: true
+    pull: yes
+    state: present

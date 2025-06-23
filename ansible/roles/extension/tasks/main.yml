@@ -1,0 +1,20 @@
+---
+- name: Copy extension directory to server
+  synchronize:
+    src: ../extension/
+    dest: /opt/clipchronicle-extension
+    rsync_opts:
+      - "--delete"
+    recurse: yes
+
+- name: Render extension docker-compose.yml
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/clipchronicle-extension/docker-compose.yml
+
+- name: Launch extension container
+  community.docker.docker_compose:
+    project_src: /opt/clipchronicle-extension
+    restarted: true
+    pull: yes
+    state: present
