@@ -1,0 +1,43 @@
+site_name: ClipChronicle Documentation
+site_description: "ClipChronicle – your clipboard’s second brain. AI-powered, local-first clipboard manager."
+site_author: ClipChronicle Team
+site_url: https://docs.clipchronicle.example.com
+repo_url: https://github.com/your-org/clipchronicle
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    primary: orange
+    accent: deep-orange
+  font:
+    text: Inter
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.sections
+    - toc.integrate
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.emoji
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Installation:
+      - Landing Site: installation/landing.md
+      - Desktop App: installation/electron.md
+      - Extension: installation/extension.md
+  - Usage:
+      - Global HUD: usage/hud.md
+      - Magic Paste: usage/magic-paste.md
+      - Analytics: usage/analytics.md
+  - Configuration: configuration.md
+  - API Reference: api.md
+  - FAQ: faq.md
+  - Changelog: CHANGELOG.md
