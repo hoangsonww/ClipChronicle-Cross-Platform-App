@@ -37,7 +37,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 /* -------------------------------------------------------------------------- */
@@ -700,6 +699,7 @@ export default function Home() {
       <Section
         id="download"
         title="Ready to Clip Smarter?"
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         sub={
           <span className="text-white">
