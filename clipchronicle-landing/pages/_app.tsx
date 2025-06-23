@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 
 function BackToTop() {
   const [visible, setVisible] = useState(false);
