@@ -1,20 +1,38 @@
 version: "3.8"
+
 services:
   landing:
     build:
       context: ./clipchronicle-landing
+      dockerfile: Dockerfile
+    image: ghcr.io/hoangsonww/clipchronicle-landing:${VERSION:-latest}
+    container_name: clipchronicle-landing
+    restart: unless-stopped
     ports:
-      - "80:80"
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
 
   extension:
     build:
       context: ./extension
+      dockerfile: Dockerfile
+    image: ghcr.io/hoangsonww/clipboard-extension:${VERSION:-latest}
+    container_name: clipchronicle-extension
+    restart: unless-stopped
     ports:
-      - "81:80"
+      - "8080:80"
 
   electron-builder:
     build:
       context: ./electron-app
+      dockerfile: Dockerfile
+    image: ghcr.io/hoangsonww/electron-app-builder:${VERSION:-latest}
+    container_name: clipchronicle-electron-builder
+    # we don't run the Electron GUI in compose,
+    # this service exists to produce the installers under ./electron-app/out
     volumes:
       - ./electron-app/out:/out
     command: ["true"]
+    # Optionally, you can trigger rebuild on compose up:
+    # entrypoint: ["sh", "-c", "npm run package && npm run make"]
