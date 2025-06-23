@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+. "$(dirname "$0")/_/husky.sh"
+
+echo "→ Running lint…"
+pnpm lint
+
+echo "→ Running unit tests…"
+pnpm test -- --coverage --passWithNoTests
+
+echo "✅ pre-commit checks passed"
