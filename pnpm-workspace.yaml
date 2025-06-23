@@ -1,0 +1,4 @@
+packages:
+  - "clipchronicle-landing"
+  - "electron-app"
+  - "extension"

@@ -94,13 +94,23 @@ export default function Navbar({
                 <li>Click the ⚙️ Settings icon.</li>
                 <li>
                   Go to{" "}
-                  <a
+                  <Typography
+                    component="a"
                     href="https://aistudio.google.com/"
                     target="_blank"
                     rel="noopener"
+                    sx={{
+                      display: "inline",
+                      color: "primary.100",
+                      fontWeight: "md",
+                      textDecoration: "underline",
+                      "&:hover": {
+                        color: "primary.300",
+                      },
+                    }}
                   >
                     aistudio.google.com
-                  </a>{" "}
+                  </Typography>{" "}
                   and create an API key.
                 </li>
                 <li>Paste your key into the Settings dialog and save.</li>
