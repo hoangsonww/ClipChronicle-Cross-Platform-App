@@ -36,11 +36,11 @@
   <img src="https://img.shields.io/badge/MKDocs-456789?style=for-the-badge&logo=materialformkdocs&logoColor=FFFFFF" />
 </p>
 
+**ClipChronicle - your clipboard’s second brain**
+
+An AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline.
+
 > [!IMPORTANT]
-> **ClipChronicle - your clipboard’s second brain**
->
-> An AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline.
->
 > **Currently live at: https://clipchronicle.vercel.app** 🚀
 
 ## Table of Contents
