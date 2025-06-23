@@ -9,6 +9,11 @@
   <img src="https://img.shields.io/badge/Tailwind%20CSS-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Framer%20Motion-E300CF?style=for-the-badge&logo=framer&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Material%20Joy%20UI-1E1E2D?style=for-the-badge&logo=mui&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/Electron-2B2E3B?style=for-the-badge&logo=electron&logoColor=9FEAF9" />
+  <img src="https://img.shields.io/badge/Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/Chrome%20Ext-MV3-FFAD00?style=for-the-badge&logo=googlechrome&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Amazon%20Web%20Services-AWS-232F3E?style=for-the-badge&logo=amazon&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Ansible-EE0000?style=for-the-badge&logo=ansible&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=FFFFFF" />
@@ -16,11 +21,6 @@
   <img src="https://img.shields.io/badge/Nomad-00C8FF?style=for-the-badge&logo=hashicorp&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Consul-DC322F?style=for-the-badge&logo=hashicorp&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=FFFFFF" />
-  <img src="https://img.shields.io/badge/Electron-2B2E3B?style=for-the-badge&logo=electron&logoColor=9FEAF9" />
-  <img src="https://img.shields.io/badge/Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=FFFFFF" />
-  <img src="https://img.shields.io/badge/Chrome%20Ext-MV3-FFAD00?style=for-the-badge&logo=googlechrome&logoColor=FFFFFF" />
-  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=FFFFFF" />
-  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/npm-CC3534?style=for-the-badge&logo=npm&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=FFFFFF" />
