@@ -33,7 +33,7 @@ export default function Document() {
         />
         <meta
           property="og:image"
-          content="https://clipchronicle.example.com/og-image.png"
+          content="https://clipchronicle.vercel.app/android-chrome-512x512.png"
         />
         <meta property="og:site_name" content="ClipChronicle" />
 
