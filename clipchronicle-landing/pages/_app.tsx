@@ -1,10 +1,10 @@
-// pages/_app.tsx
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Analytics } from "@vercel/analytics/next"
 
 function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -46,6 +46,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
       <AnimatePresence mode="wait" initial={false}>
         <Component {...pageProps} key={router.route} />
       </AnimatePresence>
+      <Analytics />
       <BackToTop />
     </>
   );
