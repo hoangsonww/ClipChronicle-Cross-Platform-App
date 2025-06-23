@@ -18,11 +18,11 @@ export default function Document() {
           content="clipboard manager, clipboard history, AI clipboard, snippet organizer, copy paste tool, local clipboard, productivity app"
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://clipchronicle.example.com" />
+        <link rel="canonical" href="https://clipchronicle.vercel.app/" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://clipchronicle.example.com" />
+        <meta property="og:url" content="https://clipchronicle.vercel.app/" />
         <meta
           property="og:title"
           content="ClipChronicle – Clipboard’s Second Brain"
@@ -39,7 +39,7 @@ export default function Document() {
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://clipchronicle.example.com" />
+        <meta name="twitter:url" content="https://clipchronicle.vercel.app/" />
         <meta
           name="twitter:title"
           content="ClipChronicle – Clipboard’s Second Brain"
@@ -50,7 +50,7 @@ export default function Document() {
         />
         <meta
           name="twitter:image"
-          content="https://clipchronicle.example.com/og-image.png"
+          content="https://clipchronicle.vercel.app/android-chrome-512x512.png"
         />
         <meta name="twitter:site" content="@ClipChronicleApp" />
         <meta name="twitter:creator" content="@ClipChronicleApp" />
