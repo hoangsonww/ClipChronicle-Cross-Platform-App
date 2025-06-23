@@ -31,6 +31,7 @@
   <img src="https://img.shields.io/badge/Shell-darkgreen?style=for-the-badge&logo=gnubash&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Makefile-123456?style=for-the-badge&logo=make&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/MKDocs-456789?style=for-the-badge&logo=materialformkdocs&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/License-MIT-000000?style=for-the-badge" />
 </p>
 

@@ -749,6 +749,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
+              <Users className="size-4" />
               About the Creator
             </Link>
             <Link
