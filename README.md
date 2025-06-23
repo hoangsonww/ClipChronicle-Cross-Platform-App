@@ -1,5 +1,12 @@
 # ClipChronicle - Make Your Clipboard Great Again 📋🚀
 
+**ClipChronicle - your clipboard’s second brain**
+
+An AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline.
+
+> [!IMPORTANT]
+> **Currently live at: https://clipchronicle.vercel.app** 🚀
+
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
@@ -35,13 +42,6 @@
   <img src="https://img.shields.io/badge/Makefile-123456?style=for-the-badge&logo=make&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/MKDocs-456789?style=for-the-badge&logo=materialformkdocs&logoColor=FFFFFF" />
 </p>
-
-**ClipChronicle - your clipboard’s second brain**
-
-An AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline.
-
-> [!IMPORTANT]
-> **Currently live at: https://clipchronicle.vercel.app** 🚀
 
 ## Table of Contents
 
@@ -304,6 +304,7 @@ We take quality seriously at ClipChronicle. Our testing strategy includes:
 - **End-to-end** – Playwright (desktop via Electron Runner and extension via Chromium)
 - **Linting** – Airbnb config + Prettier
 - **Commit hooks** – husky + lint-staged
+- and more...
 
 Run everything:
 
@@ -313,6 +314,9 @@ pnpm test:all
 
 > [!TIP]
 > Make sure you have installed the necessary dependencies for testing before running the tests!
+
+> [!CAUTION]
+> Before committing, also remember to run `npm run format` to ensure all your code conforms to the best standards!
 
 ## Continuous Delivery
 
@@ -355,16 +359,17 @@ ClipChronicle is released under the **MIT License**. See [LICENSE](LICENSE) for 
 
 For any inquiries, feedback, or support, please reach out via:
 
-- Email: [hoangson091104@gmail.com](mailto:hoangson091104@gmail.com)
-- GitHub: [hoangsonww](https://github.com/hoangsonww)
-- LinkedIn: [Son Nguyen](https://www.linkedin.com/in/hoangsonw/)
+- Email: **[hoangson091104@gmail.com](mailto:hoangson091104@gmail.com)**
+- GitHub: **[hoangsonww](https://github.com/hoangsonww)**
+- LinkedIn: **[Son Nguyen](https://www.linkedin.com/in/hoangsonw/)**
 
 Additionally, there are many resources available to help you get started and make the most of ClipChronicle:
 
 - Bug reports: [GitHub **Issues**](https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/issues)
 - Questions: [GitHub **Discussions**](https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/discussions)
 - Security: **[Security Policy](.github/SECURITY.md)**
-- Contributions: [Contributing Guidelines](.github/CONTRIBUTING.md)
+- Contributions: **[Contributing Guidelines](.github/CONTRIBUTING.md)**
+- Code of Conduct: **[Code of Conduct](.github/CODE_OF_CONDUCT.md)**
 
 ---
 
