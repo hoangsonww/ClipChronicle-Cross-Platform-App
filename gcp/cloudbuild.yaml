@@ -1,0 +1,27 @@
+# Trigger this via Cloud Build on pushes to main (or set up a manual trigger).
+options:
+  machineType: "E2_HIGHCPU_8"
+
+substitutions:
+  _BUCKET: "${_BUCKET}"
+  _LAYER_DIR: "clipchronicle-landing"
+
+steps:
+  - name: "gcr.io/cloud-builders/npm"
+    dir: "${_LAYER_DIR}"
+    args: ["ci"]
+
+  - name: "gcr.io/cloud-builders/npm"
+    dir: "${_LAYER_DIR}"
+    args: ["run", "build"]
+
+  - name: "gcr.io/cloud-builders/gsutil"
+    args:
+      - "-m"
+      - "rsync"
+      - "-r"
+      - "${_LAYER_DIR}/build"
+      - "gs://${_BUCKET}"
+
+timeout: "1200s"
+
