@@ -38,6 +38,7 @@ An AI-powered, **local-first** clipboard manager that captures, organizes, and r
   <img src="https://img.shields.io/badge/Prettier-f7f?style=for-the-badge&logo=prettier&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Dependabot-2CBE4E?style=for-the-badge&logo=dependabot&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/Google%20Cloud%20Platform-4285F4?style=for-the-badge&logo=googlecloud&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Shell-darkgreen?style=for-the-badge&logo=gnubash&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Makefile-123456?style=for-the-badge&logo=make&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/MKDocs-456789?style=for-the-badge&logo=materialformkdocs&logoColor=FFFFFF" />
@@ -70,6 +71,10 @@ An AI-powered, **local-first** clipboard manager that captures, organizes, and r
   - [Setup & Build the Extension](#setup--build-the-extension)
 - [Environment Configuration](#environment-configuration)
 - [Continuous Delivery](#continuous-delivery)
+- [Deployment & Infrastructure](#deployment--infrastructure)
+  - [AWS Resources](#aws-resources)
+  - [GCP Resources](#gcp-resources)
+  - [Infrastructure as Code](#infrastructure-as-code)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -206,11 +211,87 @@ Click on the thumbnails below to view our app's demo videos!
 
 ClipChronicle is built with a modern stack that ensures performance, security, scalability, and maintainability:
 
-- **Landing Site** – Next.js 14 • React • Tailwind CSS • Framer Motion • Shadcn UI • TypeScript • Lucide Icons • Vercel for hosting
-- **Desktop App** – Electron 29 • React • TypeScript • SQLite FTS5 • Rust clipboard hooks • SQLCipher • Material Joy UI
-- **Extension** – MV3 APIs • Web Workers for syntax highlighting • TypeScript • Rollup • Lucide Icons • Chrome Store for distribution
-- **Tooling** – pnpm workspaces • Playwright • ESLint/Prettier • Shell scripts • Makefile for build tasks • MKDocs for documentation • Docker for development environment
-- **CI/CD** – GitHub Actions matrix build & notarization • Ansible for deployment • AWS S3 for encrypted backups and native app hosting • Vault for secrets management • Terraform for infrastructure as code • Nomad for orchestration • Consul for service discovery • CycloneDX for SBOM generation
+* **Landing Site**
+
+  – Next.js
+
+  – React
+
+  – Tailwind CSS
+
+  – Framer Motion
+
+  – Shadcn UI
+
+  – TypeScript
+
+  – Lucide Icons
+
+  – Vercel (hosting)
+
+* **Desktop App**
+
+  – Electron
+
+  – React
+
+  – TypeScript
+
+  – SQLite FTS5
+
+  – Rust clipboard hooks
+
+  – SQLCipher
+
+  – Material Joy UI
+
+* **Extension**
+
+  – Manifest V3 APIs
+
+  – Web Workers (syntax highlighting)
+
+  – TypeScript
+
+  – Rollup
+
+  – Lucide Icons
+
+  – Chrome Store (distribution)
+
+* **Tooling**
+
+  – pnpm workspaces
+
+  – Playwright
+
+  – ESLint & Prettier
+
+  – Shell scripts & Makefile
+
+  – MkDocs (documentation)
+
+  – Docker (dev environment)
+
+* **CI/CD & Infrastructure**
+
+  – GitHub Actions (matrix build & notarization)
+
+  – Ansible (deployment)
+
+  – AWS S3 (encrypted backups & native app hosting)
+
+  – HashiCorp Vault (secrets)
+
+  – Terraform (IaC)
+
+  – Nomad (orchestration)
+
+  – Consul (service discovery)
+
+  – CycloneDX (SBOM generation)
+
+  – Google Cloud Platform (static site backup)
 
 ## Quick Start
 
@@ -330,6 +411,41 @@ To ensure a smooth release process, we use GitHub Actions for CI/CD. The workflo
 - Extension → ZIP draft in Chrome Web Store
 
 3. SBOM (`cyclonedx`) and SHA-256 checksums attached to the GitHub release.
+4. AWS S3 backups for the native app and extension & Google Cloud Platform/Vercel for the static site.
+5. Ansible deploys the latest version to production servers.
+6. Notifications sent to Discord and Twitter.
+
+## Deployment & Infrastructure
+
+ClipChronicle relies on both AWS and GCP for hosting, backups, and static-site delivery:
+
+### AWS Resources
+- **S3** – Encrypted backups of the native Electron app and browser extension
+- **IAM** – Fine-grained access control policies for S3 buckets
+- **KMS** – Customer-managed keys for server-side encryption
+- **CloudFront** – Global CDN in front of S3 for low-latency delivery
+
+### GCP Resources
+- **Cloud Storage** – Public bucket hosting the React/Next.js landing page
+- **Cloud Build** – CI pipeline to build & deploy on every push
+- **IAM** – Roles & bindings to restrict who/what can write to the bucket
+
+### Infrastructure as Code
+- **Terraform** – Manages both AWS and GCP resources from a single codebase
+- **Ansible** – Automates deployment and configuration management
+- **Vault** – Securely stores secrets like AWS access keys and GCP service account credentials
+- **Nomad** – Orchestrates containerized workloads across AWS and GCP
+- **Consul** – Service discovery for microservices running on AWS and GCP
+- **CycloneDX** – Generates Software Bill of Materials (SBOM) for compliance and security
+- **Docker** – Provides a consistent development environment for contributors
+- **MkDocs** – Documentation site hosted on GitHub Pages
+- **GitHub Actions** – CI/CD pipeline for automated testing, building, and deploying
+
+These resources and tools ensure that ClipChronicle is not only robust and scalable but also secure and easy to maintain.
+Also, these resources are made in a way that allows you or any other developer to easily get started and host/deploy ClipChronicle on your own infrastructure, whether it be AWS, GCP, or any other cloud provider.
+
+> [!TIP]
+> For more information, refer to the [AWS Directory](aws), [Ansible Directory](ansible), and [GCP Directory](gcp) in the repository.
 
 ## Contributing
 
@@ -338,9 +454,10 @@ We welcome contributions to ClipChronicle! Whether you want to report a bug, sug
 1. Fork and create a feature branch.
 2. Make your changes and ensure they are well-tested.
 3. Commit using **Conventional Commits** (e.g., `feat:`, `fix:`).
-   - _**Note**: Before committing, run `npm run format` in the root directory to ensure EVERYTHING is CORRECTLY FORMATTED!_
+  - _**Note**: Before committing, run `npm run format` in the root directory to ensure EVERYTHING is CORRECTLY FORMATTED!_
 4. Open a pull request - CI must pass. We'll review it and provide feedback, and merge it if everything looks good!
 5. All contributions are accepted under the MIT license and CLA.
+
 
 ## License
 
