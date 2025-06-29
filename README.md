@@ -4,6 +4,12 @@
 
 An AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline.
 
+<p align="center">
+  <a href="https://clipchronicle.vercel.app" target="_blank">
+    <img src="docs/logo.jpeg" alt="ClipChronicle Logo" width="30%" style="border-radius: 8px" />
+  </a>
+</p>
+
 > [!IMPORTANT]
 > **Currently live at: https://clipchronicle.vercel.app** 🚀
 
