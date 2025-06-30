@@ -6,7 +6,7 @@ An AI-powered, **local-first** clipboard manager that captures, organizes, and r
 
 <p align="center">
   <a href="https://clipchronicle.vercel.app" target="_blank" rel="noopener noreferrer">
-    <img src="docs/logo.jpeg" alt="ClipChronicle Logo" width="35%" style="border-radius: 8px" />
+    <img src="docs/logo.jpeg" alt="ClipChronicle Logo" width="40%" style="border-radius: 8px" />
   </a>
 </p>
 
