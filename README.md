@@ -2,11 +2,11 @@
 
 **ClipChronicle - your clipboard’s second brain**
 
-An AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline.
+An AI-powered, **local-first** clipboard manager that captures, organizes, and recalls every snippet across desktop and browser - completely offline. Time to **make your clipboard great again!**
 
 <p align="center">
   <a href="https://clipchronicle.vercel.app" target="_blank" rel="noopener noreferrer">
-    <img src="docs/logo.jpeg" alt="ClipChronicle Logo" width="30%" style="border-radius: 8px" />
+    <img src="docs/logo.jpeg" alt="ClipChronicle Logo" width="45%" style="border-radius: 8px" />
   </a>
 </p>
 
