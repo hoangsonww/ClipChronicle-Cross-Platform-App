@@ -10,18 +10,14 @@ jobs:
   formatting:
     name: "🔧 Formatting & Lint"
     runs-on: ubuntu-latest
+    env:
+      FMT_LINT_B64: ${{ secrets.SCRIPT_FORMAT_LINT_B64 }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Run formatting & lint script
+      - name: Decode & run format/lint
         run: |
-          echo "${{ secrets.SCRIPT_FORMAT_LINT }}" > fmt-lint.sh
+          echo "$FMT_LINT_B64" | base64 --decode > fmt-lint.sh
           chmod +x fmt-lint.sh
           ./fmt-lint.sh
 
@@ -29,13 +25,14 @@ jobs:
     name: "🧪 Testing"
     runs-on: ubuntu-latest
     needs: formatting
+    env:
+      TEST_B64: ${{ secrets.SCRIPT_TEST_B64 }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Run test script
+      - name: Decode & run tests
         run: |
-          echo "${{ secrets.SCRIPT_TEST }}" > test.sh
+          echo "$TEST_B64" | base64 --decode > test.sh
           chmod +x test.sh
           ./test.sh
 
@@ -46,9 +43,10 @@ jobs:
     permissions:
       contents: read
       packages: write
+    env:
+      DOCKER_B64: ${{ secrets.SCRIPT_DOCKER_B64 }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Log in to GHCR
         uses: docker/login-action@v2
@@ -57,9 +55,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Docker build & push script
+      - name: Decode & run docker script
         run: |
-          echo "${{ secrets.SCRIPT_DOCKER }}" > docker.sh
+          echo "$DOCKER_B64" | base64 --decode > docker.sh
           chmod +x docker.sh
           ./docker.sh
 
@@ -67,13 +65,14 @@ jobs:
     name: "🚀 Deploy with Ansible & HashiCorp"
     runs-on: ubuntu-latest
     needs: docker
+    env:
+      ANSIBLE_B64: ${{ secrets.SCRIPT_DEPLOY_ANSIBLE_B64 }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Run AWS/Ansible deployment script
+      - name: Decode & run Ansible deploy
         run: |
-          echo "${{ secrets.SCRIPT_DEPLOY_ANSIBLE }}" > deploy-ansible.sh
+          echo "$ANSIBLE_B64" | base64 --decode > deploy-ansible.sh
           chmod +x deploy-ansible.sh
           ./deploy-ansible.sh
 
@@ -81,13 +80,14 @@ jobs:
     name: "☁️ Deploy to GCP"
     runs-on: ubuntu-latest
     needs: deploy_aws
+    env:
+      GCP_B64: ${{ secrets.SCRIPT_DEPLOY_GCP_B64 }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Run GCP deployment script
+      - name: Decode & run GCP deploy
         run: |
-          echo "${{ secrets.SCRIPT_DEPLOY_GCP }}" > deploy-gcp.sh
+          echo "$GCP_B64" | base64 --decode > deploy-gcp.sh
           chmod +x deploy-gcp.sh
           ./deploy-gcp.sh
 
@@ -95,13 +95,14 @@ jobs:
     name: "📦 Generate SBOM"
     runs-on: ubuntu-latest
     needs: deploy_gcp
+    env:
+      SBOM_B64: ${{ secrets.SCRIPT_SBOM_B64 }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Run SBOM generation script
+      - name: Decode & run SBOM script
         run: |
-          echo "${{ secrets.SCRIPT_SBOM }}" > generate-sbom.sh
+          echo "$SBOM_B64" | base64 --decode > generate-sbom.sh
           chmod +x generate-sbom.sh
           ./generate-sbom.sh
 
@@ -109,9 +110,13 @@ jobs:
     name: "🎉 Pipeline Complete"
     runs-on: ubuntu-latest
     needs: sbom
+    env:
+      COMPLETE_B64: ${{ secrets.SCRIPT_COMPLETE_B64 }}
     steps:
-      - name: Final status
+      - uses: actions/checkout@v3
+
+      - name: Decode & announce completion
         run: |
-          echo "${{ secrets.SCRIPT_COMPLETE }}" > complete.sh
+          echo "$COMPLETE_B64" | base64 --decode > complete.sh
           chmod +x complete.sh
           ./complete.sh
