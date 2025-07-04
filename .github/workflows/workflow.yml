@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline for ClipChronicle Project
 
 on:
   push:
@@ -13,103 +13,105 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        continue-on-error: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-        continue-on-error: true
 
-      - name: Install dependencies
-        run: npm ci
-        continue-on-error: true
+      - name: Run formatting & lint script
+        run: |
+          echo "${{ secrets.SCRIPT_FORMAT_LINT }}" > fmt-lint.sh
+          chmod +x fmt-lint.sh
+          ./fmt-lint.sh
 
-      - name: Prettier format
-        run: npm run format
-        continue-on-error: true
-
-      - name: ESLint lint
-        run: npm run lint
-        continue-on-error: true
-
-  backend:
-    name: "✅ Backend Build & Test"
+  testing:
+    name: "🧪 Testing"
     runs-on: ubuntu-latest
-    needs: [formatting]
-    if: ${{ always() }}
+    needs: formatting
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        continue-on-error: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-        continue-on-error: true
+      - name: Run test script
+        run: |
+          echo "${{ secrets.SCRIPT_TEST }}" > test.sh
+          chmod +x test.sh
+          ./test.sh
 
-      - name: Install backend deps
-        run: npm --workspace backend ci
-        continue-on-error: true
-
-      - name: Backend format
-        run: npm --workspace backend run format
-        continue-on-error: true
-
-      - name: Backend lint
-        run: npm --workspace backend run lint
-        continue-on-error: true
-
-      - name: Build backend
-        run: npm --workspace backend run build
-        continue-on-error: true
-
-      - name: Backend tests
-        run: npm --workspace backend run test
-        continue-on-error: true
-
-  frontend:
-    name: "🌐 Frontend Build & Test"
+  docker:
+    name: "🐳 Build & Push Docker Images"
     runs-on: ubuntu-latest
-    needs: [backend]
-    if: ${{ always() }}
+    needs: testing
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        continue-on-error: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Log in to GHCR
+        uses: docker/login-action@v2
         with:
-          node-version: 18
-        continue-on-error: true
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install frontend deps
-        run: npm --workspace frontend ci
-        continue-on-error: true
+      - name: Run Docker build & push script
+        run: |
+          echo "${{ secrets.SCRIPT_DOCKER }}" > docker.sh
+          chmod +x docker.sh
+          ./docker.sh
 
-      - name: Frontend format
-        run: npm --workspace frontend run format
-        continue-on-error: true
+  deploy_aws:
+    name: "🚀 Deploy with Ansible & HashiCorp"
+    runs-on: ubuntu-latest
+    needs: docker
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Frontend lint
-        run: npm --workspace frontend run lint
-        continue-on-error: true
+      - name: Run AWS/Ansible deployment script
+        run: |
+          echo "${{ secrets.SCRIPT_DEPLOY_ANSIBLE }}" > deploy-ansible.sh
+          chmod +x deploy-ansible.sh
+          ./deploy-ansible.sh
 
-      - name: Build frontend
-        run: npm --workspace frontend run build
-        continue-on-error: true
+  deploy_gcp:
+    name: "☁️ Deploy to GCP"
+    runs-on: ubuntu-latest
+    needs: deploy_aws
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Frontend tests
-        run: npm --workspace frontend run test:unit
-        continue-on-error: true
+      - name: Run GCP deployment script
+        run: |
+          echo "${{ secrets.SCRIPT_DEPLOY_GCP }}" > deploy-gcp.sh
+          chmod +x deploy-gcp.sh
+          ./deploy-gcp.sh
+
+  sbom:
+    name: "📦 Generate SBOM"
+    runs-on: ubuntu-latest
+    needs: deploy_gcp
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run SBOM generation script
+        run: |
+          echo "${{ secrets.SCRIPT_SBOM }}" > generate-sbom.sh
+          chmod +x generate-sbom.sh
+          ./generate-sbom.sh
 
   complete:
     name: "🎉 Pipeline Complete"
     runs-on: ubuntu-latest
-    needs: [formatting, backend, frontend]
-    if: ${{ always() }}
+    needs: sbom
     steps:
       - name: Final status
-        run: echo "✅ CI/CD pipeline finished successfully."
+        run: |
+          echo "${{ secrets.SCRIPT_COMPLETE }}" > complete.sh
+          chmod +x complete.sh
+          ./complete.sh
