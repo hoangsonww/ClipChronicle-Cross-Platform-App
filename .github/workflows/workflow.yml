@@ -133,6 +133,7 @@ jobs:
 
       - name: Decode & announce completion
         run: |
+          echo "Pipeline completed successfully!"
           echo "$COMPLETE" | base64 --decode > complete.sh
           chmod +x complete.sh
           ./complete.sh
