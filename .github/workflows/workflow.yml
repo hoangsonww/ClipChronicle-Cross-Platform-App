@@ -10,14 +10,14 @@ jobs:
   formatting:
     name: "🔧 Formatting & Lint"
     runs-on: ubuntu-latest
+    env:
+      FMT_LINT: ${{ secrets.SCRIPT_FORMAT_LINT }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Write & run format/lint script
+      - name: Decode & run format/lint
         run: |
-          cat << 'EOF' > fmt-lint.sh
-          ${{ secrets.SCRIPT_FORMAT_LINT }}
-          EOF
+          echo "$FMT_LINT" | base64 --decode > fmt-lint.sh
           chmod +x fmt-lint.sh
           ./fmt-lint.sh
 
@@ -25,14 +25,14 @@ jobs:
     name: "🧪 Testing"
     runs-on: ubuntu-latest
     needs: formatting
+    env:
+      TEST: ${{ secrets.SCRIPT_TEST }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Write & run test script
+      - name: Decode & run tests
         run: |
-          cat << 'EOF' > test.sh
-          ${{ secrets.SCRIPT_TEST }}
-          EOF
+          echo "$TEST" | base64 --decode > test.sh
           chmod +x test.sh
           ./test.sh
 
@@ -43,6 +43,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    env:
+      DOCKER: ${{ secrets.SCRIPT_DOCKER }}
     steps:
       - uses: actions/checkout@v3
 
@@ -53,11 +55,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Write & run Docker script
+      - name: Decode & run Docker build/push
         run: |
-          cat << 'EOF' > docker.sh
-          ${{ secrets.SCRIPT_DOCKER }}
-          EOF
+          echo "$DOCKER" | base64 --decode > docker.sh
           chmod +x docker.sh
           ./docker.sh
 
@@ -65,14 +65,14 @@ jobs:
     name: "🚀 Deploy with Ansible & HashiCorp"
     runs-on: ubuntu-latest
     needs: docker
+    env:
+      DEPLOY_ANSIBLE: ${{ secrets.SCRIPT_DEPLOY_ANSIBLE }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Write & run Ansible deploy script
+      - name: Decode & run Ansible deploy
         run: |
-          cat << 'EOF' > deploy-ansible.sh
-          ${{ secrets.SCRIPT_DEPLOY_ANSIBLE }}
-          EOF
+          echo "$DEPLOY_ANSIBLE" | base64 --decode > deploy-ansible.sh
           chmod +x deploy-ansible.sh
           ./deploy-ansible.sh
 
@@ -80,14 +80,14 @@ jobs:
     name: "☁️ Deploy to GCP"
     runs-on: ubuntu-latest
     needs: deploy_aws
+    env:
+      DEPLOY_GCP: ${{ secrets.SCRIPT_DEPLOY_GCP }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Write & run GCP deploy script
+      - name: Decode & run GCP deploy
         run: |
-          cat << 'EOF' > deploy-gcp.sh
-          ${{ secrets.SCRIPT_DEPLOY_GCP }}
-          EOF
+          echo "$DEPLOY_GCP" | base64 --decode > deploy-gcp.sh
           chmod +x deploy-gcp.sh
           ./deploy-gcp.sh
 
@@ -95,14 +95,14 @@ jobs:
     name: "📦 Generate SBOM"
     runs-on: ubuntu-latest
     needs: deploy_gcp
+    env:
+      SBOM: ${{ secrets.SCRIPT_SBOM }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Write & run SBOM script
+      - name: Decode & run SBOM script
         run: |
-          cat << 'EOF' > generate-sbom.sh
-          ${{ secrets.SCRIPT_SBOM }}
-          EOF
+          echo "$SBOM" | base64 --decode > generate-sbom.sh
           chmod +x generate-sbom.sh
           ./generate-sbom.sh
 
@@ -110,13 +110,13 @@ jobs:
     name: "🎉 Pipeline Complete"
     runs-on: ubuntu-latest
     needs: sbom
+    env:
+      COMPLETE: ${{ secrets.SCRIPT_COMPLETE }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Write & announce completion
+      - name: Decode & announce completion
         run: |
-          cat << 'EOF' > complete.sh
-          ${{ secrets.SCRIPT_COMPLETE }}
-          EOF
+          echo "$COMPLETE" | base64 --decode > complete.sh
           chmod +x complete.sh
           ./complete.sh
