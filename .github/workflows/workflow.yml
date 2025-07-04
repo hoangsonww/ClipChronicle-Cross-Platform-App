@@ -43,8 +43,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    env:
-      DOCKER: ${{ secrets.SCRIPT_DOCKER }}
     steps:
       - uses: actions/checkout@v3
 
@@ -55,11 +53,29 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Decode & run Docker build/push
-        run: |
-          echo "$DOCKER" | base64 --decode > docker.sh
-          chmod +x docker.sh
-          ./docker.sh
+      - name: Build & push electron-app image
+        uses: docker/build-push-action@v3
+        with:
+          context: electron-app
+          file: electron-app/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/clipchronicle-electron:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/clipchronicle-electron:latest
+          build-args: |
+            NODE_ENV=production
+
+      - name: Build & push extension image
+        uses: docker/build-push-action@v3
+        with:
+          context: extension
+          file: extension/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/clipchronicle-extension:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/clipchronicle-extension:latest
+          build-args: |
+            NODE_ENV=production
 
   deploy_aws:
     name: "🚀 Deploy with Ansible & HashiCorp"
