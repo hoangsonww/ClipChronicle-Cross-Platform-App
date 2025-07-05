@@ -40,6 +40,7 @@ An AI-powered, **local-first** clipboard manager that captures, organizes, and r
   <img src="https://img.shields.io/badge/npm-CC3534?style=for-the-badge&logo=npm&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Playwright%20&%20Vitest-2EAD33?style=for-the-badge&logo=vitest&logoColor=FFFFFF" />
+  <img src="https://img.shields.io/badge/React%20Testing%20Library-FF4785?style=for-the-badge&logo=testinglibrary&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/Prettier-f7f?style=for-the-badge&logo=prettier&logoColor=FFFFFF" />
   <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=FFFFFF" />
@@ -158,6 +159,30 @@ ClipChronicle is packed with features to supercharge your clipboard experience:
 - **Linting** with ESLint and Prettier.
 - **Commit hooks** with husky and lint-staged.
 - **CI/CD** with GitHub Actions and Ansible for automated builds, tests, and releases with AWS and Vercel.
+
+**1. To run the Electron App tests:**
+
+```bash
+cd electron-app
+npm install
+npm run test
+```
+
+**2. To run the Extension tests:**
+
+```bash
+cd extension
+npm install
+npm run test
+```
+
+**3. To run the Landing Site tests:**
+
+```bash
+cd clipchronicle-landing
+npm install
+npm run test
+```
 
 ## User Interfaces
 
