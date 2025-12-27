@@ -446,6 +446,7 @@ const Section = ({
   return (
     <section id={id} className={`${bg} py-24 px-4 ${className}`}>
       <motion.div
+        // eslint-disable-next-line
         // @ts-ignore
         variants={fadeUp}
         initial="hidden"
@@ -664,6 +665,7 @@ export default function Home() {
           >
             <Badge>Open Source</Badge>
             <motion.h1
+              // eslint-disable-next-line
               // @ts-ignore
               variants={fadeUp}
               className="text-5xl md:text-6xl font-extrabold leading-tight"
@@ -674,6 +676,7 @@ export default function Home() {
               </span>
             </motion.h1>
             <motion.p
+              // eslint-disable-next-line
               // @ts-ignore
               variants={fadeUp}
               className="text-lg text-neutral-300 max-w-xl"
@@ -683,6 +686,7 @@ export default function Home() {
               tag instantly, and reuse on demand.
             </motion.p>
             <motion.p
+              // eslint-disable-next-line
               // @ts-ignore
               variants={fadeUp}
               className="flex items-center text-orange-400 text-2xl font-mono h-8"
@@ -697,6 +701,7 @@ export default function Home() {
               {heroHighlights.map((text) => (
                 <motion.li
                   key={text}
+                  // eslint-disable-next-line
                   // @ts-ignore
                   variants={fadeUp}
                   className="flex items-start gap-2"
@@ -706,6 +711,7 @@ export default function Home() {
                 </motion.li>
               ))}
             </motion.ul>
+            {/* eslint-disable-next-line */}
             {/* @ts-ignore */}
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
               <Btn href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/tag/v1.0.0">
@@ -721,6 +727,7 @@ export default function Home() {
               </Btn>
             </motion.div>
             <motion.div
+              // eslint-disable-next-line
               // @ts-ignore
               variants={fadeUp}
               className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.2em] text-neutral-500"
@@ -741,6 +748,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
+            // eslint-disable-next-line
             // @ts-ignore
             variants={fadeRight}
             initial="hidden"
@@ -802,6 +810,7 @@ export default function Home() {
         </div>
 
         <motion.div
+          // eslint-disable-next-line
           // @ts-ignore
           variants={fadeUp}
           initial="hidden"
@@ -836,6 +845,7 @@ export default function Home() {
             className="grid max-w-6xl mx-auto gap-6 sm:grid-cols-3"
           >
             {metrics.map(({ end, suffix, label }) => (
+              // eslint-disable-next-line
               // @ts-ignore
               <motion.li key={label} variants={fadeUp}>
                 <Card className="card-uniform bg-neutral-800/60 backdrop-blur border-orange-500/30 transition hover:shadow-[0_0_30px_rgba(255,98,0,0.55)]">
@@ -881,6 +891,7 @@ export default function Home() {
             className="grid max-w-6xl mx-auto gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
             {featureGrid.map((feature) => (
+              // eslint-disable-next-line
               // @ts-ignore
               <motion.li key={feature.title} variants={fadeUp}>
                 <motion.div
@@ -925,6 +936,7 @@ export default function Home() {
             {productTour.map((shot) => (
               <motion.div
                 key={shot.title}
+                // eslint-disable-next-line
                 // @ts-ignore
                 variants={scaleIn}
                 className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/70 shadow-lg shadow-orange-500/10 ${shot.className}`}
@@ -964,6 +976,7 @@ export default function Home() {
             {workflow.map((w, idx) => (
               <motion.li
                 key={w.step}
+                // eslint-disable-next-line
                 // @ts-ignore
                 variants={fadeUp}
                 className="flex gap-6 items-start"
@@ -996,6 +1009,7 @@ export default function Home() {
             className="grid max-w-6xl mx-auto gap-6 md:grid-cols-3"
           >
             {platformCards.map((platform) => (
+              // eslint-disable-next-line
               // @ts-ignore
               <motion.div key={platform.title} variants={fadeUp}>
                 <Card className="h-full bg-neutral-800/60 backdrop-blur border border-white/10">
@@ -1033,6 +1047,7 @@ export default function Home() {
                     className="basis-10/12 md:basis-1/3 pl-6"
                   >
                     <motion.div
+                      // eslint-disable-next-line
                       // @ts-ignore
                       variants={fadeUp}
                       initial="hidden"
@@ -1071,6 +1086,7 @@ export default function Home() {
         >
           <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
             <motion.div
+              // eslint-disable-next-line
               // @ts-ignore
               variants={fadeLeft}
               initial="hidden"
@@ -1107,6 +1123,7 @@ export default function Home() {
               className="grid gap-4"
             >
               {securityPoints.map((point) => (
+                // eslint-disable-next-line
                 // @ts-ignore
                 <motion.div key={point.title} variants={fadeUp}>
                   <Card className="bg-neutral-800/60 backdrop-blur border border-white/10">
@@ -1142,6 +1159,7 @@ export default function Home() {
                     className="basis-10/12 md:basis-1/2 pl-6"
                   >
                     <motion.blockquote
+                      // eslint-disable-next-line
                       // @ts-ignore
                       variants={fadeUp}
                       initial="hidden"
@@ -1177,6 +1195,7 @@ export default function Home() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
+            // eslint-disable-next-line
             // @ts-ignore
             variants={fadeUp}
             className="max-w-4xl mx-auto"
@@ -1208,6 +1227,7 @@ export default function Home() {
           kicker="Community"
         >
           <motion.div
+            // eslint-disable-next-line
             // @ts-ignore
             variants={fadeUp}
             initial="hidden"
@@ -1241,6 +1261,7 @@ export default function Home() {
           className="animate-gradient"
         >
           <motion.div
+            // eslint-disable-next-line
             // @ts-ignore
             variants={fadeUp}
             initial="hidden"
