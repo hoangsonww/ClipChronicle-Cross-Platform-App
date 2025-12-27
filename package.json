@@ -30,7 +30,6 @@
     "format": "npm run lint"
   },
   "dependencies": {
-    "next": "^15.5.9",
     "prettier": "^3.6.0"
   },
   "devDependencies": {
