@@ -4,3 +4,4 @@ electron-app/.webpack
 electron-app/out
 clipchronicle-landing/.next
 clipchronicle-landing/node_modules
+*.md
