@@ -21,7 +21,7 @@
     "framer-motion": "^12.18.1",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.522.0",
-    "next": "15.3.4",
+    "next": "15.5.9",
     "react": "^19.0.0",
     "react-countup": "^6.5.3",
     "react-dom": "^19.0.0",
