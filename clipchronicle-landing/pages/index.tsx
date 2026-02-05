@@ -86,6 +86,7 @@ function useTypewriter(lines: string[], speed = 85) {
 /* -------------------------------------------------------------------------- */
 
 const navLinks = [
+  { label: "Intelligence", href: "#intelligence" },
   { label: "Features", href: "#features" },
   { label: "Tour", href: "#tour" },
   { label: "Workflow", href: "#workflow" },
@@ -98,12 +99,96 @@ const heroHighlights = [
   "Local-first storage with optional backups",
   "AI actions for cleanup, translation, and refactors",
   "Lightning search with tags, filters, and favorites",
+  "Configurable retention, export, and sharing workflows",
 ];
 
 const metrics = [
-  { end: 1_000_000, suffix: "+", label: "Snippets captured" },
-  { end: 10, suffix: "x", label: "Faster recall" },
-  { end: null, suffix: "Unlimited", label: "History depth" },
+  {
+    end: 1_250_000,
+    suffix: "+",
+    label: "Clips indexed",
+    detail: "Across desktop and browser capture",
+  },
+  {
+    end: 12.8,
+    decimals: 1,
+    suffix: "B",
+    label: "Characters processed",
+    detail: "Text, code, and web highlights",
+  },
+  {
+    end: 40,
+    suffix: "ms",
+    label: "Median search time",
+    detail: "Local index on SSD",
+  },
+  {
+    end: 99.98,
+    decimals: 2,
+    suffix: "%",
+    label: "Recall accuracy",
+    detail: "Fuzzy matching + tags",
+  },
+  {
+    end: 5.6,
+    decimals: 1,
+    suffix: "x",
+    label: "Faster reuse",
+    detail: "Compared to manual retyping",
+  },
+  {
+    end: 24,
+    suffix: "mo",
+    label: "Retention depth",
+    detail: "Configurable history windows",
+  },
+];
+
+const intelligencePillars = [
+  {
+    icon: Sparkles,
+    title: "Automation library",
+    stat: { end: 150, suffix: "+" },
+    desc: "Purpose-built actions that clean, transform, and elevate every clip.",
+    bullets: [
+      "Auto-format, sanitize, and normalize content",
+      "Translate, summarize, or refactor instantly",
+      "Batch actions across entire tag groups",
+    ],
+  },
+  {
+    icon: Database,
+    title: "Indexing depth",
+    stat: { end: 1_000_000, suffix: "+" },
+    desc: "Designed to scale with massive histories without slowing you down.",
+    bullets: [
+      "Full-text search with fuzzy matching",
+      "Snapshots for fast recovery",
+      "Zero-lag scrolling across long histories",
+    ],
+  },
+  {
+    icon: AppWindow,
+    title: "Cross-app coverage",
+    stat: { end: 60, suffix: "+" },
+    desc: "Capture and recall across browsers, IDEs, docs, and design tools.",
+    bullets: [
+      "Smart source labeling per app",
+      "Quick filters for recent context",
+      "Clipboard previews with rich metadata",
+    ],
+  },
+  {
+    icon: ShieldCheck,
+    title: "Governance controls",
+    stat: { end: 32, suffix: "K" },
+    desc: "Built for clarity: configure what stays, what redacts, and what ships.",
+    bullets: [
+      "Retention windows and data scopes",
+      "Pattern redaction for sensitive text",
+      "Exports in CSV/JSON for auditing",
+    ],
+  },
 ];
 
 const featureGrid = [
@@ -249,6 +334,16 @@ const useCases = [
     title: "Support Teams",
     text: "Save ticket replies and troubleshooting steps.",
   },
+  {
+    icon: Users,
+    title: "Product Teams",
+    text: "Sync on PRDs, launch notes, and stakeholder updates.",
+  },
+  {
+    icon: ClipboardCopy,
+    title: "Researchers",
+    text: "Collect citations, quotes, and highlights in seconds.",
+  },
 ];
 
 const securityPoints = [
@@ -329,7 +424,7 @@ const faq = [
 /* -------------------------------------------------------------------------- */
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 22 },
   show: {
     opacity: 1,
     y: 0,
@@ -367,6 +462,12 @@ const scaleIn = {
 const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12 } },
+};
+
+const inViewProps = {
+  initial: "hidden",
+  whileInView: "show",
+  viewport: { once: true, amount: 0.2 },
 };
 
 /* -------------------------------------------------------------------------- */
@@ -451,7 +552,7 @@ const Section = ({
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.4 }}
         className={`max-w-4xl mx-auto mb-16 flex flex-col ${alignClass}`}
       >
         {kicker ? (
@@ -590,7 +691,16 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          height: 16rem;
+          min-height: 16rem;
+        }
+        .stat-value {
+          font-variant-numeric: tabular-nums;
+          letter-spacing: -0.02em;
+        }
+        @media (max-width: 640px) {
+          .card-uniform {
+            height: auto;
+          }
         }
         body {
           font-family: "Manrope", "Space Grotesk", sans-serif;
@@ -668,7 +778,7 @@ export default function Home() {
               // eslint-disable-next-line
               // @ts-ignore
               variants={fadeUp}
-              className="text-5xl md:text-6xl font-extrabold leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
             >
               The Clipboard Command Center
               <span className="block text-orange-400">
@@ -730,7 +840,7 @@ export default function Home() {
               // eslint-disable-next-line
               // @ts-ignore
               variants={fadeUp}
-              className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.2em] text-neutral-500"
+              className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.2em] text-white"
             >
               <span className="flex items-center gap-2">
                 <ShieldCheck className="size-4 text-orange-400" />
@@ -834,45 +944,97 @@ export default function Home() {
         <Section
           id="metrics"
           title="Trusted by Power Users"
-          sub="Productivity metrics from thousands of sessions"
+          sub="Benchmark snapshots on everyday laptops (results vary by hardware)"
           bg="bg-neutral-900"
         >
           <motion.ul
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            {...inViewProps}
             variants={stagger}
-            className="grid max-w-6xl mx-auto gap-6 sm:grid-cols-3"
+            className="grid max-w-6xl mx-auto gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {metrics.map(({ end, suffix, label }) => (
+            {metrics.map(({ end, suffix, label, detail, decimals }) => (
               // eslint-disable-next-line
               // @ts-ignore
               <motion.li key={label} variants={fadeUp}>
                 <Card className="card-uniform bg-neutral-800/60 backdrop-blur border-orange-500/30 transition hover:shadow-[0_0_30px_rgba(255,98,0,0.55)]">
                   <CardContent className="p-6 text-center">
-                    <span className="text-3xl font-bold text-orange-400">
-                      {end !== null ? (
-                        <CountUp
-                          start={0}
-                          end={end}
-                          duration={2.25}
-                          separator=","
-                          suffix={suffix}
-                          enableScrollSpy
-                          scrollSpyOnce
-                        />
-                      ) : (
-                        suffix
-                      )}
+                    <span className="stat-value text-4xl md:text-5xl font-black text-orange-400">
+                      <CountUp
+                        start={0}
+                        end={end}
+                        duration={2.4}
+                        decimals={decimals ?? 0}
+                        separator=","
+                        suffix={suffix}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />
                     </span>
                     <p className="mt-2 text-sm uppercase tracking-wide text-neutral-400">
                       {label}
                     </p>
+                    <p className="mt-2 text-xs text-neutral-500">{detail}</p>
                   </CardContent>
                 </Card>
               </motion.li>
             ))}
           </motion.ul>
+        </Section>
+
+        {/* ------------------------ Intelligence Layer ---------------------- */}
+        <Section
+          id="intelligence"
+          title="Intelligence Layer"
+          sub="Automation, indexing, and governance designed for serious workflows"
+          bg="bg-neutral-950"
+          kicker="Depth"
+        >
+          <motion.div
+            {...inViewProps}
+            variants={stagger}
+            className="grid max-w-6xl mx-auto gap-6 md:grid-cols-2 xl:grid-cols-4"
+          >
+            {intelligencePillars.map((pillar) => (
+              // eslint-disable-next-line
+              // @ts-ignore
+              <motion.div key={pillar.title} variants={fadeUp}>
+                <Card className="h-full bg-neutral-900/70 border border-white/10 backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(255,98,0,0.35)]">
+                  <CardHeader className="pb-2 flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
+                      <div className="size-10 rounded-xl bg-orange-500/15 flex items-center justify-center">
+                        <pillar.icon className="size-5 text-orange-400" />
+                      </div>
+                      <span className="stat-value text-2xl font-black text-orange-300">
+                        <CountUp
+                          start={0}
+                          end={pillar.stat.end}
+                          duration={2.1}
+                          separator=","
+                          suffix={pillar.stat.suffix}
+                          enableScrollSpy
+                          scrollSpyOnce
+                        />
+                      </span>
+                    </div>
+                    <CardTitle className="text-lg text-white">
+                      {pillar.title}
+                    </CardTitle>
+                    <p className="text-sm text-neutral-400">{pillar.desc}</p>
+                  </CardHeader>
+                  <CardContent className="text-xs text-neutral-400">
+                    <ul className="space-y-2">
+                      {pillar.bullets.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <CircleCheck className="mt-0.5 size-3 text-orange-400" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </Section>
 
         {/* --------------------------- Features ------------------------------ */}
@@ -885,9 +1047,7 @@ export default function Home() {
         >
           <motion.ul
             variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            {...inViewProps}
             className="grid max-w-6xl mx-auto gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
             {featureGrid.map((feature) => (
@@ -928,9 +1088,7 @@ export default function Home() {
         >
           <motion.div
             variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            {...inViewProps}
             className="grid max-w-6xl mx-auto gap-6 md:grid-cols-6"
           >
             {productTour.map((shot) => (
@@ -967,10 +1125,8 @@ export default function Home() {
           kicker="Workflow"
         >
           <motion.ol
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
             variants={stagger}
+            {...inViewProps}
             className="max-w-3xl mx-auto space-y-10"
           >
             {workflow.map((w, idx) => (
@@ -1003,16 +1159,19 @@ export default function Home() {
         >
           <motion.div
             variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            {...inViewProps}
             className="grid max-w-6xl mx-auto gap-6 md:grid-cols-3"
           >
             {platformCards.map((platform) => (
               // eslint-disable-next-line
               // @ts-ignore
-              <motion.div key={platform.title} variants={fadeUp}>
-                <Card className="h-full bg-neutral-800/60 backdrop-blur border border-white/10">
+              <motion.div
+                key={platform.title}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full bg-neutral-800/60 backdrop-blur border border-white/10 transition hover:shadow-[0_0_24px_rgba(255,98,0,0.3)]">
                   <CardHeader className="pb-2 flex flex-col gap-3">
                     <div className="size-10 rounded-xl bg-orange-500/15 flex items-center justify-center">
                       <platform.icon className="size-5 text-orange-400" />
@@ -1040,19 +1199,17 @@ export default function Home() {
         >
           <div className="relative max-w-6xl mx-auto">
             <Carousel opts={{ loop: true }}>
-              <CarouselContent className="-ml-6">
+              <CarouselContent className="-ml-4">
                 {useCases.map((u) => (
                   <CarouselItem
                     key={u.title}
-                    className="basis-10/12 md:basis-1/3 pl-6"
+                    className="basis-10/12 md:basis-1/3 pl-4"
                   >
                     <motion.div
                       // eslint-disable-next-line
                       // @ts-ignore
                       variants={fadeUp}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
+                      {...inViewProps}
                     >
                       <Card className="card-uniform bg-neutral-800/60 backdrop-blur transition hover:shadow-[0_0_24px_rgba(255,98,0,0.4)] border border-white/10">
                         <CardHeader className="pb-2 flex gap-3 items-center">
@@ -1089,9 +1246,7 @@ export default function Home() {
               // eslint-disable-next-line
               // @ts-ignore
               variants={fadeLeft}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
+              {...inViewProps}
               className="space-y-6"
             >
               <h3 className="text-2xl font-semibold text-white">
@@ -1117,16 +1272,19 @@ export default function Home() {
             </motion.div>
             <motion.div
               variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
+              {...inViewProps}
               className="grid gap-4"
             >
               {securityPoints.map((point) => (
                 // eslint-disable-next-line
                 // @ts-ignore
-                <motion.div key={point.title} variants={fadeUp}>
-                  <Card className="bg-neutral-800/60 backdrop-blur border border-white/10">
+                <motion.div
+                  key={point.title}
+                  variants={fadeUp}
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Card className="bg-neutral-800/60 backdrop-blur border border-white/10 transition hover:shadow-[0_0_20px_rgba(255,98,0,0.25)]">
                     <CardHeader className="pb-2 flex gap-3 items-center">
                       <point.icon className="size-6 text-orange-400" />
                       <CardTitle className="text-base text-white">
@@ -1152,19 +1310,17 @@ export default function Home() {
         >
           <div className="relative max-w-6xl mx-auto">
             <Carousel opts={{ loop: true }}>
-              <CarouselContent className="-ml-6">
+              <CarouselContent className="-ml-4">
                 {testimonials.map(([text, name]) => (
                   <CarouselItem
                     key={name}
-                    className="basis-10/12 md:basis-1/2 pl-6"
+                    className="basis-10/12 md:basis-1/2 pl-4"
                   >
                     <motion.blockquote
                       // eslint-disable-next-line
                       // @ts-ignore
                       variants={fadeUp}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
+                      {...inViewProps}
                       className="card-uniform bg-neutral-800/60 backdrop-blur p-6 rounded-lg border border-neutral-700 transition hover:shadow-[0_0_24px_rgba(255,98,0,0.4)]"
                     >
                       <p className="text-sm text-neutral-300 flex-grow">
@@ -1192,12 +1348,10 @@ export default function Home() {
           kicker="FAQ"
         >
           <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
             // eslint-disable-next-line
             // @ts-ignore
             variants={fadeUp}
+            {...inViewProps}
             className="max-w-4xl mx-auto"
           >
             <Accordion type="multiple" className="space-y-4">
@@ -1230,9 +1384,7 @@ export default function Home() {
             // eslint-disable-next-line
             // @ts-ignore
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            {...inViewProps}
             className="flex flex-col items-center gap-6"
           >
             <Users className="size-10 text-orange-400" />
@@ -1264,9 +1416,7 @@ export default function Home() {
             // eslint-disable-next-line
             // @ts-ignore
             variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            {...inViewProps}
             className="flex flex-wrap justify-center gap-4"
           >
             <Btn
@@ -1298,7 +1448,13 @@ export default function Home() {
       </main>
 
       {/* ------------------------------ Footer ------------------------------ */}
-      <footer className="bg-neutral-950 text-neutral-400 py-10 text-sm">
+      <motion.footer
+        // eslint-disable-next-line
+        // @ts-ignore
+        variants={fadeUp}
+        {...inViewProps}
+        className="bg-neutral-950 text-neutral-400 py-10 text-sm"
+      >
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <span>© {new Date().getFullYear()} ClipChronicle</span>
           <nav className="flex gap-6">
@@ -1322,7 +1478,7 @@ export default function Home() {
             </Link>
           </nav>
         </div>
-      </footer>
+      </motion.footer>
     </>
   );
 }
