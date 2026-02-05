@@ -118,7 +118,7 @@ function Carousel({
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={cn("relative", className)}
+        className={cn("relative w-full", className)}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"
@@ -136,7 +136,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden px-3 sm:px-4 md:px-6 py-6"
+      className="w-full overflow-hidden px-3 sm:px-4 md:px-6 py-6"
       data-slot="carousel-content"
     >
       <div
@@ -183,10 +183,10 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-8 rounded-full cursor-pointer",
         orientation === "horizontal"
-          ? "top-1/2 left-2 -translate-y-1/2 sm:-left-12"
-          : "top-2 left-1/2 -translate-x-1/2 rotate-90 sm:-top-12",
+          ? "top-1/2 left-2 -translate-y-1/2"
+          : "top-2 left-1/2 -translate-x-1/2 rotate-90",
         className,
       )}
       disabled={!canScrollPrev}
@@ -213,10 +213,10 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-8 rounded-full cursor-pointer",
         orientation === "horizontal"
-          ? "top-1/2 right-2 -translate-y-1/2 sm:-right-12"
-          : "bottom-2 left-1/2 -translate-x-1/2 rotate-90 sm:-bottom-12",
+          ? "top-1/2 right-2 -translate-y-1/2"
+          : "bottom-2 left-1/2 -translate-x-1/2 rotate-90",
         className,
       )}
       disabled={!canScrollNext}

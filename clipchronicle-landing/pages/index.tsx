@@ -1199,7 +1199,7 @@ export default function Home() {
           bg="bg-neutral-950"
           kicker="Use Cases"
         >
-          <div className="relative max-w-6xl mx-auto">
+          <div className="relative w-full">
             <Carousel opts={{ loop: true }}>
               <CarouselContent className="-ml-4">
                 {useCases.map((u) => (
@@ -1310,7 +1310,7 @@ export default function Home() {
           bg="bg-neutral-950"
           kicker="Testimonials"
         >
-          <div className="relative max-w-6xl mx-auto">
+          <div className="relative w-full">
             <Carousel opts={{ loop: true }}>
               <CarouselContent className="-ml-4">
                 {testimonials.map(([text, name]) => (
