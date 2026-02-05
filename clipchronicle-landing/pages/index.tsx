@@ -423,12 +423,14 @@ const faq = [
 /*                                Animations                                  */
 /* -------------------------------------------------------------------------- */
 
+const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: easeOutExpo },
   },
 };
 
@@ -437,7 +439,7 @@ const fadeLeft = {
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: easeOutExpo },
   },
 };
 
@@ -446,7 +448,7 @@ const fadeRight = {
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: easeOutExpo },
   },
 };
 
@@ -455,7 +457,7 @@ const scaleIn = {
   show: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: easeOutExpo },
   },
 };
 
