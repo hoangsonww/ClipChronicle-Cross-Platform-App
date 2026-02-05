@@ -1,6 +1,6 @@
 {
   "name": "clipchronicle-cross-platform",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A cross-platform AI-powered clipboard manager for Linux, macOS, and Windows.",
   "author": {
     "name": "Son Nguyen"
