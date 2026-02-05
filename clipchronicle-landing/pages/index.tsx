@@ -426,38 +426,25 @@ const faq = [
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: easeOutExpo },
+    transition: { duration: 0.55, ease: easeOutExpo },
   },
 };
 
-const fadeLeft = {
-  hidden: { opacity: 0, x: -40 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, ease: easeOutExpo },
-  },
-};
-
-const fadeRight = {
-  hidden: { opacity: 0, x: 40 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, ease: easeOutExpo },
-  },
-};
+// Keep a consistent slide-up language across the page.
+const fadeLeft = fadeUp;
+const fadeRight = fadeUp;
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.96 },
+  hidden: { opacity: 0, y: 18, scale: 0.98 },
   show: {
     opacity: 1,
+    y: 0,
     scale: 1,
-    transition: { duration: 0.6, ease: easeOutExpo },
+    transition: { duration: 0.55, ease: easeOutExpo },
   },
 };
 
@@ -549,30 +536,45 @@ const Section = ({
   return (
     <section id={id} className={`${bg} py-24 px-4 ${className}`}>
       <motion.div
-        // eslint-disable-next-line
-        // @ts-ignore
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.4 }}
+        variants={stagger}
+        {...inViewProps}
         className={`max-w-4xl mx-auto mb-16 flex flex-col ${alignClass}`}
       >
         {kicker ? (
-          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-400">
+          <motion.span
+            // eslint-disable-next-line
+            // @ts-ignore
+            variants={fadeUp}
+            className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-400"
+          >
             {kicker}
-          </span>
+          </motion.span>
         ) : null}
-        <h2 className="mt-4 text-3xl md:text-4xl font-extrabold text-white">
+        <motion.h2
+          // eslint-disable-next-line
+          // @ts-ignore
+          variants={fadeUp}
+          className="mt-4 text-3xl md:text-4xl font-extrabold text-white"
+        >
           {title}
-        </h2>
+        </motion.h2>
         {sub ? (
-          <div className="mt-3 text-lg text-neutral-400">{sub}</div>
+          <motion.div
+            // eslint-disable-next-line
+            // @ts-ignore
+            variants={fadeUp}
+            className="mt-3 text-lg text-neutral-400"
+          >
+            {sub}
+          </motion.div>
         ) : null}
       </motion.div>
       {children}
     </section>
   );
 };
+
+const MotionAccordionItem = motion(AccordionItem);
 
 /* -------------------------------------------------------------------------- */
 /*                                  Page                                      */
@@ -1350,15 +1352,16 @@ export default function Home() {
           kicker="FAQ"
         >
           <motion.div
-            // eslint-disable-next-line
-            // @ts-ignore
-            variants={fadeUp}
+            variants={stagger}
             {...inViewProps}
             className="max-w-4xl mx-auto"
           >
             <Accordion type="multiple" className="space-y-4">
               {faq.map(([q, a], idx) => (
-                <AccordionItem
+                <MotionAccordionItem
+                  // eslint-disable-next-line
+                  // @ts-ignore
+                  variants={fadeUp}
                   key={idx}
                   value={`item-${idx}`}
                   className="border border-neutral-700 rounded-lg backdrop-blur bg-neutral-800/60"
@@ -1369,7 +1372,7 @@ export default function Home() {
                   <AccordionContent className="px-4 pb-4 text-sm text-neutral-400">
                     {a}
                   </AccordionContent>
-                </AccordionItem>
+                </MotionAccordionItem>
               ))}
             </Accordion>
           </motion.div>
@@ -1383,22 +1386,37 @@ export default function Home() {
           kicker="Community"
         >
           <motion.div
-            // eslint-disable-next-line
-            // @ts-ignore
-            variants={fadeUp}
+            variants={stagger}
             {...inViewProps}
             className="flex flex-col items-center gap-6"
           >
-            <Users className="size-10 text-orange-400" />
-            <p className="max-w-xl text-neutral-300 text-center">
+            <motion.div
+              // eslint-disable-next-line
+              // @ts-ignore
+              variants={fadeUp}
+            >
+              <Users className="size-10 text-orange-400" />
+            </motion.div>
+            <motion.p
+              // eslint-disable-next-line
+              // @ts-ignore
+              variants={fadeUp}
+              className="max-w-xl text-neutral-300 text-center"
+            >
               ClipChronicle lives on GitHub under the MIT license. We welcome
               pull requests, feature ideas, and issue reports - star the repo to
               support open development.
-            </p>
-            <Btn href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App">
-              <Github className="size-5" />
-              Star on GitHub
-            </Btn>
+            </motion.p>
+            <motion.div
+              // eslint-disable-next-line
+              // @ts-ignore
+              variants={fadeUp}
+            >
+              <Btn href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App">
+                <Github className="size-5" />
+                Star on GitHub
+              </Btn>
+            </motion.div>
           </motion.div>
         </Section>
 
@@ -1415,51 +1433,76 @@ export default function Home() {
           className="animate-gradient"
         >
           <motion.div
-            // eslint-disable-next-line
-            // @ts-ignore
-            variants={fadeUp}
+            variants={stagger}
             {...inViewProps}
             className="flex flex-wrap justify-center gap-4"
           >
-            <Btn
-              outline
-              className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
-              href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
+            <motion.div
+              // eslint-disable-next-line
+              // @ts-ignore
+              variants={fadeUp}
             >
-              <Download className="size-5" />
-              Windows
-            </Btn>
-            <Btn
-              outline
-              className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
-              href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
+              <Btn
+                outline
+                className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
+                href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
+              >
+                <Download className="size-5" />
+                Windows
+              </Btn>
+            </motion.div>
+            <motion.div
+              // eslint-disable-next-line
+              // @ts-ignore
+              variants={fadeUp}
             >
-              <Download className="size-5" />
-              macOS
-            </Btn>
-            <Btn
-              outline
-              className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
-              href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
+              <Btn
+                outline
+                className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
+                href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
+              >
+                <Download className="size-5" />
+                macOS
+              </Btn>
+            </motion.div>
+            <motion.div
+              // eslint-disable-next-line
+              // @ts-ignore
+              variants={fadeUp}
             >
-              <Download className="size-5" />
-              Linux
-            </Btn>
+              <Btn
+                outline
+                className="border-white/60 text-white hover:shadow-[0_0_20px_rgba(255,98,0,0.55)]"
+                href="https://github.com/hoangsonww/ClipChronicle-Cross-Platform-App/releases/download/v1.0.0/ClipChronicle-Native-darwin-arm64-1.0.0.zip"
+              >
+                <Download className="size-5" />
+                Linux
+              </Btn>
+            </motion.div>
           </motion.div>
         </Section>
       </main>
 
       {/* ------------------------------ Footer ------------------------------ */}
       <motion.footer
-        // eslint-disable-next-line
-        // @ts-ignore
-        variants={fadeUp}
+        variants={stagger}
         {...inViewProps}
         className="bg-neutral-950 text-neutral-400 py-10 text-sm"
       >
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-          <span>© {new Date().getFullYear()} ClipChronicle</span>
-          <nav className="flex gap-6">
+          <motion.span
+            // eslint-disable-next-line
+            // @ts-ignore
+            variants={fadeUp}
+          >
+            © {new Date().getFullYear()} ClipChronicle
+          </motion.span>
+          <motion.nav
+            // eslint-disable-next-line
+            // @ts-ignore
+            variants={fadeUp}
+            className="flex gap-6"
+          >
             <Link
               href="https://github.com/hoangsonww"
               className="flex items-center gap-1 hover:text-white transition"
@@ -1478,7 +1521,7 @@ export default function Home() {
               <Github className="size-4" />
               GitHub Repository
             </Link>
-          </nav>
+          </motion.nav>
         </div>
       </motion.footer>
     </>
